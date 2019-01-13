@@ -184,9 +184,14 @@ def TwoBeach():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = '2nd Beach'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
-
-	return render_template('TwoBeach.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+	return render_template('TwoBeach.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 @app.route('/Narragansett')
@@ -306,8 +311,16 @@ def Narragansett():
 	cursor.close()
 
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Narragansett'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
-	return render_template('Narragansett.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+
+	return render_template('Narragansett.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 
@@ -427,9 +440,16 @@ def Ruggles():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Ruggles'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Ruggles.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('Ruggles.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 
@@ -674,15 +694,22 @@ def Nantasket():
 	info13 = [dict(SwellSize=row[0], SwellInterval=row[1], WindSpeed=row[2], WindDescription=row[3], AirTemperature=row[4], Beach=row[5], Day=row[6], Tiempo=row[7], St8=row[8]) for row in cursor.fetchall()]
 	cursor.close()
 
-	# distinct day for getdate()+5
+	# distinct day for getdate()+6
 	cursor = conn.cursor()
 	cursor.execute("select distinct date_ from SurfMaster2 where beach_name ='Nantasket' and date_ = date('now','+6 day')")
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Nantasket'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Nantasket.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('Nantasket.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 @app.route('/Scituate')
@@ -801,9 +828,14 @@ def Scituate():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Scituate'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
-
-	return render_template('Scituate.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+	return render_template('Scituate.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 @app.route('/CapeCod')
@@ -922,9 +954,16 @@ def CapeCod():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Cape Cod'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('CapeCod.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('CapeCod.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 @app.route('/GreenHarbor')
@@ -1043,9 +1082,16 @@ def GreenHarbor():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Green Harbor'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('GreenHarbor.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('GreenHarbor.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 @app.route('/CapeAnn')
 @csrf.exempt
@@ -1163,9 +1209,16 @@ def CapeAnn():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Cape Ann'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('CapeAnn.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('CapeAnn.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 @app.route('/Devereux')
@@ -1284,9 +1337,15 @@ def Devereux():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Devereux Beach'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Devereux.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+	return render_template('Devereux.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 @app.route('/Salisbury')
@@ -1405,9 +1464,16 @@ def Salisbury():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Salisbury'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Salisbury.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('Salisbury.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 @app.route('/Plymouth')
 @csrf.exempt
@@ -1525,9 +1591,16 @@ def Plymouth():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Plymouth'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Plymouth.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('Plymouth.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15, graph_data=graph_data)
 
 
 #--------------------------NH BEACHES--------------------------------
@@ -1648,9 +1721,16 @@ def Rye():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Rye'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Rye.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('Rye.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 @app.route('/Hampton')
 @csrf.exempt
@@ -1768,9 +1848,16 @@ def Hampton():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Hampton'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Hampton.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('Hampton.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 
 @app.route('/Seabrook')
@@ -1889,9 +1976,16 @@ def Seabrook():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'Seabrook'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('Seabrook.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+
+	return render_template('Seabrook.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14, info15=info15,  graph_data=graph_data)
 
 @app.route('/NHSeacoast')
 @csrf.exempt
@@ -2009,9 +2103,15 @@ def NHSeacoast():
 	info14 = [dict(DayDistinct=row[0]) for row in cursor.fetchall()]
 	cursor.close()
 
+	# CurrentSurfConditions in page header
+	# For now, setting all 'current conditions' to mid-day conditions (time_ = 12pm)
+	cursor = conn.cursor()
+	cursor.execute("select swellsizeft, swellintervalsec, windmph, airtemp, WindDescription from surfmaster2 where date_ = date('now') and time_ = '12pm' and beach_name = 'NHSeacoast'")
+	info15 = [dict(SwellSizeFt1=row[0], SwellIntervalSec1=row[1], WindMPH1=row[2], AirTemp1=row[3], WindDescription1=row[4]) for row in cursor.fetchall()]
+	cursor.close()
 
 
-	return render_template('NHSeacoast.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  graph_data=graph_data)
+	return render_template('NHSeacoast.html', selected='submit',info1=info1, info2=info2, info3=info3, info4=info4, info5=info5, info6=info6, info7=info7, info8=info8,  info9=info9,  info10=info10,  info11=info11,  info12=info12,  info13=info13,  info14=info14,  info15=info15, graph_data=graph_data)
 
 
 #---------------------------------- END BEACHES ----------------------------------#
